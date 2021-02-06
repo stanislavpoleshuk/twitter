@@ -1,0 +1,6 @@
+module Pods_ergast {
+  umbrella header "Pods-ergast-umbrella.h"
+
+  export *
+  module * { export * }
+}
