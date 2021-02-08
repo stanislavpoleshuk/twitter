@@ -1,6 +1,6 @@
 const CommonLocalization = {
   ru: {
-    home: 'Главная',
+    date: 'Дата',
   },
 };
 

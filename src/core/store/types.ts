@@ -9,4 +9,5 @@ export interface BaseState<C> {
 
 export interface BaseStatePageable<T> extends BaseState<T> {
   pageable: Pageable;
+  totalPages: number;
 }

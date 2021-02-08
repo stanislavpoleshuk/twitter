@@ -9,7 +9,7 @@ import storeRegistry from './storeRegistry';
 const persistConfig = {
   key: 'rootPersist',
   storage: AsyncStorage,
-  whitelist: ['user', 'settings'],
+  whitelist: [],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

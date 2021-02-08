@@ -1,5 +1,5 @@
 export interface RequestByPage {
-  pageNumber: number;
+  pageNumber?: number;
   pageSize?: number;
 }
 

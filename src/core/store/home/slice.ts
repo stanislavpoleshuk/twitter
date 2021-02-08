@@ -4,7 +4,7 @@ import { IPost, ResponseBodyPost } from 'api/post';
 import { isErrorApi } from 'api/types';
 
 import { HomeState, reduxStoreName as name, PAGE_SIZE } from './types';
-import { fetchHomePost, resetAction } from './actions';
+import { fetchHomeNextPostPage, fetchHomePost, resetAction } from './actions';
 
 const initialStatePost: BaseStatePageable<IPost> = {
   content: [],
@@ -14,6 +14,7 @@ const initialStatePost: BaseStatePageable<IPost> = {
     pageNumber: 0,
     pageSize: PAGE_SIZE,
   },
+  totalPages: 5,
   error: undefined,
 };
 
@@ -52,6 +53,22 @@ const slice = createSlice({
         state.content = action.payload.content;
       })
       .addCase(fetchHomePost.rejected, (state, action) => {
+        state.loading = false;
+        if (isErrorApi(action.payload)) {
+          state.error = action.payload;
+        }
+      });
+
+    // постраничная подгрузка
+    builder
+      .addCase(fetchHomeNextPostPage.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(fetchHomeNextPostPage.fulfilled, (state, action) => {
+        setStateReducer(state, action);
+        state.content.push(...action.payload.content);
+      })
+      .addCase(fetchHomeNextPostPage.rejected, (state, action) => {
         state.loading = false;
         if (isErrorApi(action.payload)) {
           state.error = action.payload;
