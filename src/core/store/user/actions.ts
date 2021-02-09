@@ -1,9 +1,10 @@
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
-import { fetchPostApi, RequestPost, ResponseBodyPost } from 'api/post';
+import { createPostApi, fetchPostApi, IPost, RequestPost, ResponseBodyPost } from 'api/post';
 import { ErrorApi } from 'api/types';
 import { RootState } from 'core/store/rootReducer';
+import { unshiftUserPostAction } from 'core/store/home/actions';
 
-import { reduxStoreName, PAGE_SIZE } from './types';
+import { reduxStoreName, PAGE_SIZE, ICreateTweet } from './types';
 
 export const resetAction = createAction(`${reduxStoreName}/resetAction`);
 
@@ -73,3 +74,23 @@ export const fetchUserNextPostPage = createAsyncThunk<
 export const deleteUserPostByIdAction = createAction<number>(
   `${reduxStoreName}/deleteUserPostByIdAction`,
 );
+
+// добалвение нового поста
+export const createUserPostByIdAction = createAsyncThunk<
+  IPost,
+  ICreateTweet,
+  {
+    rejectValue: ErrorApi;
+  }
+>(`${reduxStoreName}/createUserPostByIdAction`, async (request, { rejectWithValue, dispatch }) => {
+  let newPost: IPost;
+
+  try {
+    newPost = await createPostApi(request);
+    return await createPostApi(request);
+  } catch (e) {
+    return rejectWithValue(e);
+  } finally {
+    dispatch(unshiftUserPostAction(newPost));
+  }
+});

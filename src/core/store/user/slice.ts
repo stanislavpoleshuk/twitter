@@ -5,6 +5,7 @@ import { isErrorApi } from 'api/types';
 
 import { UserState, reduxStoreName as name, PAGE_SIZE } from './types';
 import {
+  createUserPostByIdAction,
   deleteUserPostByIdAction,
   fetchUserNextPostPage,
   fetchUserPost,
@@ -85,6 +86,22 @@ const slice = createSlice({
       const id = action.payload;
       state.content = state.content.filter((x) => x.id !== id);
     });
+
+    // создание поста
+    builder
+      .addCase(createUserPostByIdAction.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(createUserPostByIdAction.fulfilled, (state, action) => {
+        const newPost = action.payload;
+        state.content = [newPost, ...state.content];
+      })
+      .addCase(createUserPostByIdAction.rejected, (state, action) => {
+        state.loading = false;
+        if (isErrorApi(action.payload)) {
+          state.error = action.payload;
+        }
+      });
   },
 });
 

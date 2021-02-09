@@ -1,6 +1,7 @@
 import faker from 'faker';
 import { ConstructPageable, GenerateRandomId } from 'api/types';
 import fakerApiClient from 'api/fakerApiClient';
+import { ICreateTweet } from 'core/store/user/types';
 
 import { IPost, RequestPost, ResponseBodyPost } from './types';
 
@@ -22,4 +23,16 @@ export const fetchPostApi = (request: RequestPost): Promise<ResponseBodyPost> =>
       pageable: ConstructPageable(pageNumber, pageSize),
     };
   });
+};
+
+export const createPostApi = (post: ICreateTweet): Promise<IPost> => {
+  return fakerApiClient.fetch(() => {
+    const newPost: IPost = {
+      id: Date.now(),
+      message: post.message,
+      date: new Date().toISOString(),
+      user: CURRENT_USER_INFO,
+    };
+    return newPost;
+  }, 500);
 };

@@ -4,7 +4,12 @@ import { IPost, ResponseBodyPost } from 'api/post';
 import { isErrorApi } from 'api/types';
 
 import { HomeState, reduxStoreName as name, PAGE_SIZE } from './types';
-import { fetchHomeNextPostPage, fetchHomePost, resetAction } from './actions';
+import {
+  fetchHomeNextPostPage,
+  fetchHomePost,
+  resetAction,
+  unshiftUserPostAction,
+} from './actions';
 
 const initialStatePost: BaseStatePageable<IPost> = {
   content: [],
@@ -74,6 +79,11 @@ const slice = createSlice({
           state.error = action.payload;
         }
       });
+
+    // добавить в начало списка новый пост
+    builder.addCase(unshiftUserPostAction, (state, action) => {
+      state.content.unshift(action.payload);
+    });
   },
 });
 

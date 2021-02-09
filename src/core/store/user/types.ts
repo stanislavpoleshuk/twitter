@@ -5,3 +5,7 @@ export const PAGE_SIZE: number = 8;
 export const reduxStoreName = 'user';
 
 export interface UserState extends BaseStatePageable<IPost> {}
+
+export interface ICreateTweet {
+  message: string;
+}

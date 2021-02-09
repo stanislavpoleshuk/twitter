@@ -13,6 +13,7 @@ export type HomeStackParamList = {
   [ScreenNames.USER]: {
     user: IUser;
   };
+  [ScreenNames.CREATE_TWEET]: undefined;
 };
 
 const baseOptions = {

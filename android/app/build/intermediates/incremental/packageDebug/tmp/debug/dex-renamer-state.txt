@@ -1,0 +1,4 @@
+#Tue Feb 09 17:58:54 EET 2021
+base.0=/Users/staspoleshuk/Documents/Projects/2021/twitter/android/app/build/intermediates/dex/debug/mergeDexDebug/out/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

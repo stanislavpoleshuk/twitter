@@ -3,6 +3,7 @@ enum ScreenNames {
   HOME_STACK = 'HomeStack',
   HOME = 'HomeScreen',
   USER = 'UserScreen',
+  CREATE_TWEET = 'CreateTweetScreen',
 }
 
 export default ScreenNames;

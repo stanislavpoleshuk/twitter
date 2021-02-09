@@ -1,10 +1,10 @@
 class FakerApiClient {
-  fetch<T>(resolveFunc: () => T): Promise<T> {
+  fetch<T>(resolveFunc: () => T, ms: number = 2000): Promise<T> {
     return new Promise(function (resolve) {
       setTimeout(() => {
         const result = resolveFunc();
         resolve(result);
-      }, 2000);
+      }, ms);
     });
   }
 }

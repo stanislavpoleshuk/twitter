@@ -5,6 +5,7 @@ export class AppColors {
   static LIGHT = '#F7F9FC';
   static LIGHT_BAR = '#FFFFFF';
   static BLUE = '#164589';
+  static LIGHT_BLUE = '#d7e6f3';
   static WHITE = '#FFFFFF';
   static GRAY = '#f8f7f7';
   static BLACK = '#212121';

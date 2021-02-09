@@ -1,5 +1,5 @@
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
-import { fetchPostApi, RequestPost, ResponseBodyPost } from 'api/post';
+import { fetchPostApi, IPost, RequestPost, ResponseBodyPost } from 'api/post';
 import { ErrorApi } from 'api/types';
 import { RootState } from 'core/store/rootReducer';
 
@@ -68,3 +68,6 @@ export const fetchHomeNextPostPage = createAsyncThunk<
     },
   },
 );
+
+// добавить в начало списка новый пост
+export const unshiftUserPostAction = createAction<IPost>(`${reduxStoreName}/unshiftUserPostAction`);

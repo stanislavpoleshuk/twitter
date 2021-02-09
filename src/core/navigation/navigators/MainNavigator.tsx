@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from 'react-native-screens/native-stack';
 import ScreenNames from 'core/navigation/ScreenNames';
 
 import HomeNavigator from './HomeNavigator';
+import EditorNavigator from './EditorNavigator';
 
 const Stack = createNativeStackNavigator();
 
@@ -12,9 +13,11 @@ const MainNavigator = (): React.ReactElement => {
       initialRouteName={ScreenNames.MAIN_ROUTE}
       screenOptions={{
         headerShown: false,
+        stackPresentation: 'fullScreenModal',
       }}
     >
       <Stack.Screen name={ScreenNames.HOME_STACK} component={HomeNavigator} />
+      <Stack.Screen name={ScreenNames.CREATE_TWEET} component={EditorNavigator} />
     </Stack.Navigator>
   );
 };

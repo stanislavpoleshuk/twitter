@@ -14,9 +14,16 @@ type Props = {
 };
 
 const Home: React.FC<Props> = ({ navigation }) => {
-  const navigateToPostScreen = useCallback((post: IPost) => {
-    console.log(post, '@navigateToPostScreen');
-  }, []);
+  const navigateToPostScreen = useCallback(
+    (post: IPost) => {
+      // возможен переход на страницу поста, а так как её у нас нет, будет осуществлен переход
+      // на страницу пользователя
+      navigation.navigate(ScreenNames.USER, {
+        user: post.user,
+      });
+    },
+    [navigation],
+  );
 
   const navigateToUserScreen = useCallback(
     (user: IUser) => {
