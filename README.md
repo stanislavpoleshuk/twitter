@@ -4,7 +4,7 @@
 `yarn install`
 
 
-Чтобы запустить из под:
+Чтобы запустить:
 
 iOS:  `react-native run-ios`
 
